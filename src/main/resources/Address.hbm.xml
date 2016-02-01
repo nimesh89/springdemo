@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.npg.demo.model">
+    <class name="Address" table="address">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="billing" column="isbilling" />
+        <property name="residence" column="isresidence" />
+        <property name="apartment" column="apt" />
+        <property name="address1" column="address1" />
+        <property name="address2" column="address2" />
+        <property name="city" column="city" />
+        <property name="stateOrProvince" column="stateorprovince" />
+        <property name="zip" column="zip" />
+        <property name="postalCode" column="postal_code" />
+        <property name="country" column="country" />
+        <property name="createDate" column="create_date" />
+        <many-to-one name="user" class="User" column="user_id" cascade="all" />
+    </class>
+</hibernate-mapping>

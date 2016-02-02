@@ -24,15 +24,14 @@ public class HelloController {
 
     @RequestMapping(value = "/helloWorld", consumes = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
     public String helloWorld(@RequestBody UserRequestModel user, Model model) {
-//        Session session = sessionFactory.openSession();
-//        session.beginTransaction();
-//        UserRequestModel user = new UserRequestModel();
-//        user.setFirstName("Nimesh");
-//        user.setLastName("Gunasekara");
-//        user.setCreateDate(new Date());
-//        session.save(user);
-//        session.getTransaction().commit();
-        model.addAttribute("message", "Hello World!ssss");
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        User userdata = new User();
+        userdata.setFirstName(user.getFirstName());
+        userdata.setLastName(user.getLastName());
+        session.save(userdata);
+        session.getTransaction().commit();
+        model.addAttribute("message", "Added User: " + userdata.getFirstName() + " " + userdata.getLastName() + ", Id: " + userdata.getId());
         return "helloWorld";
     }
 }
